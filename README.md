@@ -1,10 +1,11 @@
 # WSTabBarController
 A custom TabBarController with publish button written in Swift.
 
+![screenShot](ScreenShot/screen_shot1.png)
 
+![screenShot](ScreenShot/screen_shot2.png)
 
-
-![screenShot](ScreenShot/screen_shot1.png)![screenShot](ScreenShot/screen_shot2.png)![screenShot](ScreenShot/screen_shot3.png)
+![screenShot](ScreenShot/screen_shot3.png)
 
 ## Requirements
 - iOS 8.0+

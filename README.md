@@ -3,9 +3,13 @@ A custom TabBarController with publish button written in Swift.
 
 ![screenShot](ScreenShot/screen_shot1.png)
 
-![screenShot](ScreenShot/screen_shot2.png)
+Two tab
 
-![screenShot](ScreenShot/screen_shot3.png)
+![screenShot2](ScreenShot/screen_shot2.png)
+
+Three tab
+
+![screenShot3](ScreenShot/screen_shot3.png)
 
 ## Requirements
 - iOS 8.0+

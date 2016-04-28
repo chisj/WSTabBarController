@@ -62,7 +62,6 @@ class WSTabBar: UITabBar {
             publishButtonHeight = defaultPublishHeight
             btnPublish.backgroundColor = UIColor.redColor()
             btnPublish.setTitle("+", forState: .Normal)
-            btnPublish.setTitle("+", forState: .Normal)
         }
         
         btnPublish.center = CGPointMake(barWidth / 2.0, publishButtonHeight >= barHeight ? barHeight - (publishButtonHeight / 2.0) : barHeight / 2.0)

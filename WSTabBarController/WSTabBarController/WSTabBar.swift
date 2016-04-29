@@ -14,12 +14,9 @@ class WSTabBar: UITabBar {
     private let defaultPublishHeight : CGFloat = 56
     private let btnPublish = WSTabBarButton(type:.Custom)
     
-    var publishButtonConfig : (WSTabBarButton ->Void)? {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-    var publishButtonClick : (UIButton ->Void)?
+    private var publishButtonIndex : Int?
+    private var publishButtonConfig : (WSTabBarButton ->Void)?
+    private var publishButtonClick : (UIButton ->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +30,14 @@ class WSTabBar: UITabBar {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func set(publishButtonConfig config:(UIButton ->Void)?, publishButtonClick: (UIButton ->Void)?, publishButtonIndex: Int) {
+        self.publishButtonIndex = publishButtonIndex
+        self.publishButtonConfig = config
+        self.publishButtonClick = publishButtonClick
+        setNeedsLayout()
     }
     
     func publishClick(sender : WSTabBarButton) {
@@ -66,11 +71,23 @@ class WSTabBar: UITabBar {
         
         btnPublish.center = CGPointMake(barWidth / 2.0, publishButtonHeight >= barHeight ? barHeight - (publishButtonHeight / 2.0) : barHeight / 2.0)
         let buttonWidth : CGFloat = (barWidth - publishButtonWidth) / CGFloat(originBarNumber)
-        let publishIndex = originBarNumber / 2 == 0 ? 1 : originBarNumber / 2
+        
+        var publishIndex = 0
+        if let customIndex = publishButtonIndex {
+            //invalid index
+            if customIndex > originBarNumber || customIndex < 0 {
+                print("Publish button index invalid!")
+                publishIndex = originBarNumber / 2 == 0 ? 1 : originBarNumber / 2
+            } else {
+                publishIndex = customIndex
+            }
+        } else {
+            publishIndex = originBarNumber / 2 == 0 ? 1 : originBarNumber / 2
+        }
         var index = 0
         subviews.forEach { s in
             if String(s.dynamicType) == "UITabBarButton" {
-                s.frame = CGRectMake(index >= publishIndex ? buttonWidth * CGFloat(index) +  publishButtonWidth: buttonWidth * CGFloat(index), s.frame.origin.y, buttonWidth, s.frame.size.height)
+                s.frame = CGRectMake(index >= publishIndex ? buttonWidth * CGFloat(index) +  publishButtonWidth : buttonWidth * CGFloat(index), s.frame.origin.y, buttonWidth, s.frame.size.height)
                 index = index + 1
             }
             if String(s.dynamicType) == "WSTabBarButton" {

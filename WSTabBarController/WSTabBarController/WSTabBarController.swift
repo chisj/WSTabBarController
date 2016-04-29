@@ -9,10 +9,15 @@
 import UIKit
 
 public class WSTabBarController: UITabBarController {
+
+    public init(publishButtonConfig config:(UIButton ->Void)?, publishButtonClick: (UIButton ->Void)?, publishButtonIndex: Int) {
+        super.init(nibName: nil, bundle: nil)
+        wsTabbar.set(publishButtonConfig: config, publishButtonClick: publishButtonClick, publishButtonIndex: publishButtonIndex)
+    }
+    
     public init(publishButtonConfig config:(UIButton ->Void)?, publishButtonClick : (UIButton ->Void)?) {
         super.init(nibName: nil, bundle: nil)
-        wsTabbar.publishButtonConfig = config
-        wsTabbar.publishButtonClick = publishButtonClick
+        wsTabbar.set(publishButtonConfig: config, publishButtonClick: publishButtonClick, publishButtonIndex: -1)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {

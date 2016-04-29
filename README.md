@@ -1,7 +1,7 @@
 # WSTabBarController
 A custom TabBarController with publish button written in Swift.
 
-![screenShot](ScreenShot/screen_shot1.png)
+![screenShot](ScreenShot/tabbarsample.gif)
 
 Two tab
 
@@ -38,6 +38,22 @@ tabbarController = WSTabBarController(publishButtonConfig: {b in
 ```
 
 Then use it just like a UITabBarController.
+
+### Custom publish button index
+
+
+![screenShot4](ScreenShot/screen_shot4.png)
+
+
+
+```
+maintabbarController = WSTabBarController(publishButtonConfig: {b in
+
+            	//set your publish button like size,image,etc.
+            }, publishButtonClick: { b in 
+            	print("publish button clicked")
+            }, publishButtonIndex: 0)
+```
 
 
 For the usage, please refer to Sample Project.

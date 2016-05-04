@@ -76,7 +76,7 @@ class WSTabBar: UITabBar {
         if let customIndex = publishButtonIndex {
             //invalid index
             if customIndex > originBarNumber || customIndex < 0 {
-                print("Publish button index invalid!")
+                //print("Publish button index invalid!")
                 publishIndex = originBarNumber / 2 == 0 ? 1 : originBarNumber / 2
             } else {
                 publishIndex = customIndex

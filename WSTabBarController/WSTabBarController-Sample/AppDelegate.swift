@@ -31,19 +31,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             b.setTitleColor(UIColor.blackColor(), forState: .Normal)
             b.setTitleColor(UIColor.blackColor(), forState: .Highlighted)
             }, publishButtonClick: { p in
-                print("publish button clicked")
                 let alert = UIAlertView(title: nil, message: "Publish", delegate: nil, cancelButtonTitle: "OK")
                 alert.show()
         })
         maintabbarController?.tabBar.translucent = false;
         maintabbarController?.tabBar.tintColor =  UIColor.orangeColor()
-        
         maintabbarController?.viewControllers = [controller(title: "tab1", icon: "tabbar_main"),
                                                  controller(title: "tab2", icon: "tabbar_main"),
                                                  controller(title: "tab3", icon: "tabbar_mine"),
                                                  controller(title: "tab4", icon: "tabbar_mine")
         ]
         window!.rootViewController = maintabbarController
+        
         return true
     }
     

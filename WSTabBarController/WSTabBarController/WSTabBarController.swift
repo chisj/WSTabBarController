@@ -11,7 +11,7 @@ import UIKit
 public class WSTabBarController: UITabBarController {
     let wsTabbar = WSTabBar()
     
-    public init(publishButtonConfig config:(UIButton ->Void)?, publishButtonClick: (UIButton ->Void)?, publishButtonIndex: Int = -1) {
+    public init(publishButtonConfig config:((UIButton) ->Void)?, publishButtonClick: ((UIButton) ->Void)?, publishButtonIndex: Int = -1) {
         super.init(nibName: nil, bundle: nil)
         wsTabbar.set(publishButtonConfig: config, publishButtonClick: publishButtonClick, publishButtonIndex: publishButtonIndex)
     }

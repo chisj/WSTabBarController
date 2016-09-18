@@ -12,17 +12,17 @@ class WSTabBarButton: UIButton {}
 
 class WSTabBar: UITabBar {
     private let defaultPublishHeight : CGFloat = 56
-    private let btnPublish = WSTabBarButton(type:.Custom)
+    private let btnPublish = WSTabBarButton(type:.custom)
     
     private var publishButtonIndex : Int?
-    private var publishButtonConfig : (WSTabBarButton ->Void)?
-    private var publishButtonClick : (UIButton ->Void)?
+    private var publishButtonConfig : ((WSTabBarButton) ->Void)?
+    private var publishButtonClick : ((UIButton) ->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        btnPublish.backgroundColor = UIColor.clearColor()
-        btnPublish.addTarget(self, action: #selector(WSTabBar.publishClick(_:)), forControlEvents: .TouchUpInside)
+        btnPublish.backgroundColor = UIColor.clear
+        btnPublish.addTarget(self, action: #selector(WSTabBar.publishClick(sender:)), for: .touchUpInside)
         addSubview(btnPublish)
         
         return
@@ -32,7 +32,7 @@ class WSTabBar: UITabBar {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(publishButtonConfig config:(UIButton ->Void)?, publishButtonClick: (UIButton ->Void)?, publishButtonIndex: Int) {
+    func set(publishButtonConfig config:((UIButton) ->Void)?, publishButtonClick: ((UIButton) ->Void)?, publishButtonIndex: Int) {
         self.publishButtonIndex = publishButtonIndex
         self.publishButtonConfig = config
         self.publishButtonClick = publishButtonClick
@@ -64,11 +64,11 @@ class WSTabBar: UITabBar {
             //default config
             publishButtonWidth = barWidth / CGFloat(originBarNumber + 1)
             publishButtonHeight = defaultPublishHeight
-            btnPublish.backgroundColor = UIColor.redColor()
-            btnPublish.setTitle("+", forState: .Normal)
+            btnPublish.backgroundColor = UIColor.red
+            btnPublish.setTitle("+", for: .normal)
         }
         
-        btnPublish.center = CGPointMake(barWidth / 2.0, publishButtonHeight >= barHeight ? barHeight - (publishButtonHeight / 2.0) : barHeight / 2.0)
+        btnPublish.center = CGPoint(x: barWidth / 2.0, y: publishButtonHeight >= barHeight ? barHeight - (publishButtonHeight / 2.0) : barHeight / 2.0)
         let buttonWidth : CGFloat = (barWidth - publishButtonWidth) / CGFloat(originBarNumber)
         
         var publishIndex = 0
@@ -84,14 +84,14 @@ class WSTabBar: UITabBar {
         }
         var index = 0
         subviews.forEach { button in
-            if String(button.dynamicType) == "UITabBarButton" {
-                button.frame = CGRectMake(index >= publishIndex ? buttonWidth * CGFloat(index) +  publishButtonWidth : buttonWidth * CGFloat(index), button.frame.origin.y, buttonWidth, button.frame.size.height)
+            if String(describing: type(of: button)) == "UITabBarButton" {
+                button.frame = CGRect(x: index >= publishIndex ? buttonWidth * CGFloat(index) +  publishButtonWidth : buttonWidth * CGFloat(index), y: button.frame.origin.y, width: buttonWidth, height: button.frame.size.height)
                 index = index + 1
             }
-            if String(button.dynamicType) == "WSTabBarButton" {
-                button.frame = CGRectMake(buttonWidth * CGFloat(publishIndex), button.frame.origin.y, publishButtonWidth, publishButtonHeight)
+            if String(describing: type(of: button)) == "WSTabBarButton" {
+                button.frame = CGRect(x: buttonWidth * CGFloat(publishIndex), y: button.frame.origin.y, width: publishButtonWidth, height: publishButtonHeight)
             }
         }
-        bringSubviewToFront(btnPublish)
+        bringSubview(toFront: btnPublish)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class WSTabBarController: UITabBarController {
+open class WSTabBarController: UITabBarController {
     let wsTabbar = WSTabBar()
     
     public init(publishButtonConfig config:((UIButton) ->Void)?, publishButtonClick: ((UIButton) ->Void)?, publishButtonIndex: Int = -1) {
@@ -20,7 +20,7 @@ public class WSTabBarController: UITabBarController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         setValue(wsTabbar, forKey: "tabBar")

@@ -11,18 +11,18 @@ import UIKit
 class WSTabBarButton: UIButton {}
 
 class WSTabBar: UITabBar {
-    private let defaultPublishHeight : CGFloat = 56
-    private let btnPublish = WSTabBarButton(type:.custom)
+    fileprivate let defaultPublishHeight : CGFloat = 56
+    fileprivate let btnPublish = WSTabBarButton(type:.custom)
     
-    private var publishButtonIndex : Int?
-    private var publishButtonConfig : ((WSTabBarButton) ->Void)?
-    private var publishButtonClick : ((UIButton) ->Void)?
+    fileprivate var publishButtonIndex : Int?
+    fileprivate var publishButtonConfig : ((WSTabBarButton) ->Void)?
+    fileprivate var publishButtonClick : ((UIButton) ->Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         btnPublish.backgroundColor = UIColor.clear
-        btnPublish.addTarget(self, action: #selector(WSTabBar.publishClick(sender:)), for: .touchUpInside)
+        btnPublish.addTarget(self, action: #selector(publishClick(_:)), for: .touchUpInside)
         addSubview(btnPublish)
         
         return
@@ -39,7 +39,7 @@ class WSTabBar: UITabBar {
         setNeedsLayout()
     }
     
-    func publishClick(sender : WSTabBarButton) {
+    func publishClick(_ sender : WSTabBarButton) {
         if let click = publishButtonClick {
             click(sender)
         }

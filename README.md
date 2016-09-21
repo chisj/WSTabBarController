@@ -21,7 +21,8 @@ Three tabs
 ## Requirements
 
 - iOS 8.0+
-- Swift 2.2
+- Swift 2.2 (v0.0.3)
+- Swift 3.0 (V0.0.4)
 
 ## Installation
 
